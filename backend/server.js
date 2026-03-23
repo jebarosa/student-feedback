@@ -13,14 +13,12 @@ app.use(express.json());
 app.use('/api/feedback', require('./routes/feedback'));
 app.use('/api/contact', require('./routes/contact'));
 
-// Health check
+// Root route (ONLY ONE)
 app.get('/', (req, res) => {
-  res.json({ status: 'OK', message: 'Student Feedback API is running.' });
+  res.send("🚀 Student Feedback Backend is Running!");
 });
 
+// Start server (ALWAYS LAST)
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
-});
-app.get("/", (req, res) => {
-  res.send("🚀 Student Feedback Backend is Running!");
 });
