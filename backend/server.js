@@ -22,3 +22,8 @@ app.get('/', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+const feedbackRoutes = require('./routes/feedback');
+const contactRoutes = require('./routes/contact');
+
+app.use('/api/feedback', feedbackRoutes);
+app.use('/api/contact', contactRoutes);
