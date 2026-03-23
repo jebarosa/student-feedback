@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Feedback | AIML Portal</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <!-- Particle canvas for mouse-reactive background -->
+  <canvas id="particles"></canvas>
+
+  <!-- Custom cursor -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-trail" id="cursorTrail"></div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="logo">
+      <span class="logo-bracket">[</span> AIML_FEEDBACK <span class="logo-bracket">]</span>
+    </div>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">Developer</a></li>
+      <li><a href="#feedback">Feedback</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <p class="pre-title">// Kristu Jayanti University</p>
+      <h1 class="glitch" data-text="STUDENT FEEDBACK">STUDENT FEEDBACK</h1>
+      <h2>Powered by <span class="highlight">AI & ML</span> Insights</h2>
+      <p class="tagline">Move your mouse — the universe responds.</p>
+      <a href="#feedback" class="cta-btn">Submit Feedback →</a>
+    </div>
+    <div class="hero-visual">
+      <div class="neural-net" id="neuralNet"></div>
+    </div>
+  </section>
+
+  <!-- ABOUT / DEVELOPER SECTION -->
+  <section id="about" class="about">
+    <div class="section-label">// DEVELOPER</div>
+    <div class="about-card" id="aboutCard">
+      <div class="card-glow"></div>
+      <div class="avatar-ring">
+        <div class="avatar-inner">JR</div>
+      </div>
+      <div class="about-info">
+        <h2>Jeba Rosa K</h2>
+        <div class="info-row"><span class="info-key">College</span><span class="info-val">Kristu Jayanti University</span></div>
+        <div class="info-row"><span class="info-key">Course</span><span class="info-val">BSc Artificial Intelligence & Machine Learning</span></div>
+        <div class="info-row"><span class="info-key">Tech Stack</span><span class="info-val">Python · TensorFlow · Node.js · MySQL · HTML/CSS/JS</span></div>
+        <div class="info-row"><span class="info-key">Role</span><span class="info-val">Full Stack Developer · AIML Enthusiast</span></div>
+        <p class="about-bio">
+          Passionate about building intelligent systems that bridge human feedback 
+          with machine learning insights. This portal uses sentiment analysis to 
+          process your feedback in real-time.
+        </p>
+        <div class="skill-tags">
+          <span>Neural Networks</span>
+          <span>NLP</span>
+          <span>Data Viz</span>
+          <span>REST APIs</span>
+          <span>Git</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AIML SECTION -->
+  <section id="aiml" class="aiml-section">
+    <div class="section-label">// HOW AIML IS USED</div>
+    <h2 class="section-title">AI & ML Inside This Portal</h2>
+    <div class="aiml-grid">
+      <div class="aiml-card" data-tilt>
+        <div class="aiml-icon">🧠</div>
+        <h3>Sentiment Analysis</h3>
+        <p>Your feedback text is run through an NLP model that classifies emotions as Positive, Neutral, or Negative using a trained Naive Bayes classifier.</p>
+      </div>
+      <div class="aiml-card" data-tilt>
+        <div class="aiml-icon">📊</div>
+        <h3>Feedback Clustering</h3>
+        <p>K-Means clustering groups similar feedback responses, helping instructors identify common themes without reading every submission.</p>
+      </div>
+      <div class="aiml-card" data-tilt>
+        <div class="aiml-icon">🔮</div>
+        <h3>Trend Prediction</h3>
+        <p>A time-series regression model predicts satisfaction trends over semesters, flagging potential drops before they become problems.</p>
+      </div>
+      <div class="aiml-card" data-tilt>
+        <div class="aiml-icon">💡</div>
+        <h3>Smart Suggestions</h3>
+        <p>Based on historical data, the system auto-suggests improvement areas to faculty using a recommendation engine.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEEDBACK FORM SECTION -->
+  <section id="feedback" class="feedback-section">
+    <div class="section-label">// SUBMIT FEEDBACK</div>
+    <h2 class="section-title">Share Your Experience</h2>
+    <div class="form-wrapper">
+      <div class="sentiment-display" id="sentimentDisplay">
+        <span id="sentimentEmoji">🤖</span>
+        <span id="sentimentText">AI Sentiment: Waiting...</span>
+      </div>
+      <div class="form-group">
+        <label>Your Name</label>
+        <input type="text" id="studentName" placeholder="Enter your full name" />
+      </div>
+      <div class="form-group">
+        <label>Course / Subject</label>
+        <input type="text" id="courseName" placeholder="e.g., BSc AIML - Machine Learning" />
+      </div>
+      <div class="form-group">
+        <label>Rating</label>
+        <div class="star-rating" id="starRating">
+          <span data-val="1">★</span>
+          <span data-val="2">★</span>
+          <span data-val="3">★</span>
+          <span data-val="4">★</span>
+          <span data-val="5">★</span>
+        </div>
+        <input type="hidden" id="ratingVal" value="0"/>
+      </div>
+      <div class="form-group">
+        <label>Your Feedback</label>
+        <textarea id="feedbackText" rows="5" placeholder="Describe your experience. The AI will analyze the sentiment..."></textarea>
+      </div>
+      <button class="submit-btn" id="submitBtn" onclick="submitFeedback()">
+        <span>Submit Feedback</span>
+        <div class="btn-particles"></div>
+      </button>
+      <div id="responseMsg" class="response-msg"></div>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section id="contact" class="contact-section">
+    <div class="section-label">// CONTACT ME</div>
+    <h2 class="section-title">Get In Touch</h2>
+    <div class="contact-wrapper">
+      <div class="contact-info">
+        <h3>Jeba Rosa K</h3>
+        <p>Feel free to reach out for collaborations, queries, or just to talk AIML!</p>
+        <div class="contact-detail">
+          <span class="c-icon">📧</span>
+          <span>jebarosa123@gmail.com</span>
+        </div>
+        <div class="contact-detail">
+          <span class="c-icon">🏫</span>
+          <span>Kristu Jayanti University, Bangalore</span>
+        </div>
+        <div class="contact-detail">
+          <span class="c-icon">🎓</span>
+          <span>BSc AI & Machine Learning</span>
+        </div>
+      </div>
+      <div class="contact-form">
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" id="contactName" placeholder="Your full name" />
+        </div>
+        <div class="form-group">
+          <label>Gmail</label>
+          <input type="email" id="contactEmail" placeholder="yourname@gmail.com" />
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea id="contactMessage" rows="4" placeholder="Write your message here..."></textarea>
+        </div>
+        <button class="submit-btn" onclick="sendContact()">Send Message →</button>
+        <div id="contactMsg" class="response-msg"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Built with ❤️ by <strong>Jeba Rosa K</strong> | BSc AIML | Kristu Jayanti University</p>
+    <p class="footer-sub">Hosted on Render · Source on GitHub · © 2026</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
